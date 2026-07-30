@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isah Aruna — WordPress Website Designer & Front-End Developer</title>
+    <meta name="description" content="Isah Aruna — WordPress Website Designer & Front-End Developer based in Abuja, Nigeria. 5+ years building fast, beautiful WordPress websites that convert.">
+    <meta property="og:title" content="Isah Aruna — WordPress Website Designer & Front-End Developer">
+    <meta property="og:description" content="5+ years designing, developing, and optimizing responsive WordPress websites for businesses across Nigeria, the UK, and Europe.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0A0A0F',
+                            800: '#111118',
+                            700: '#1A1A24',
+                            600: '#22222E',
+                            500: '#2A2A3A',
+                        },
+                        accent: {
+                            start: '#0EA5E9',
+                            end: '#14B8A6',
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #0A0A0F; color: #E2E8F0; overflow-x: hidden; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: #111118;
+            border-radius: 16px;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 17px;
+            padding: 1px;
+            background: linear-gradient(135deg, #0EA5E9, #14B8A6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border:hover::before { opacity: 1; }
+
+        .glow-accent {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15), 0 0 40px rgba(20, 184, 166, 0.1);
+        }
+
+        .card-lift {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15), 0 0 60px rgba(20, 184, 166, 0.08);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 35s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .status-line {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: statusReveal 8s ease-in-out infinite;
+        }
+        .status-line:nth-child(1) { animation-delay: 0s; }
+        .status-line:nth-child(2) { animation-delay: 1.5s; }
+        .status-line:nth-child(3) { animation-delay: 3s; }
+        .status-line:nth-child(4) { animation-delay: 4.5s; }
+        .status-line:nth-child(5) { animation-delay: 6s; }
+
+        @keyframes statusReveal {
+            0%, 5% { opacity: 0; transform: translateY(10px); }
+            10%, 85% { opacity: 1; transform: translateY(0); }
+            90%, 100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        .number-stroke {
+            -webkit-text-stroke: 2px rgba(14, 165, 233, 0.3);
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .metric-number {
+            background: linear-gradient(135deg, #0EA5E9, #14B8A6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tag-pill {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            color: #0EA5E9;
+            transition: all 0.3s ease;
+        }
+        .tag-pill:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #14B8A6;
+            border-radius: 50%;
+            animation: livePulse 2s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(20, 184, 166, 0); }
+        }
+
+        .process-line {
+            position: absolute;
+            left: 24px;
+            top: 60px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #0EA5E9, #14B8A6);
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .process-line { left: 20px; }
+        }
+
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+        .hamburger-active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger-active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        .portfolio-overlay {
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.6) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-card:hover .portfolio-tags { transform: translateY(0); opacity: 1; }
+        .portfolio-tags {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(20, 184, 166, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            transition: all 0.3s ease;
+        }
+        .cert-badge:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .cta-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            animation: rotate-glow 10s linear infinite;
+        }
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0F; }
+        ::-webkit-scrollbar-thumb { background: #2A2A3A; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-start to-accent-end flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent-start/20 group-hover:shadow-accent-start/40 transition-shadow">
+                        IA
+                    </div>
+                    <span class="font-bold text-lg text-white hidden sm:block">Isah Aruna</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-sm text-gray-400 hover:text-white transition-colors">Services</a>
+                    <a href="#portfolio" class="text-sm text-gray-400 hover:text-white transition-colors">Portfolio</a>
+                    <a href="#process" class="text-sm text-gray-400 hover:text-white transition-colors">Process</a>
+                    <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-start to-accent-end text-white text-sm font-medium hover:shadow-lg hover:shadow-accent-start/30 transition-all hover:scale-105">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded-full block"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded-full block"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded-full block"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-dark-900/98 nav-blur md:hidden">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#services" class="text-2xl text-white font-medium mobile-link">Services</a>
+            <a href="#portfolio" class="text-2xl text-white font-medium mobile-link">Portfolio</a>
+            <a href="#process" class="text-2xl text-white font-medium mobile-link">Process</a>
+            <a href="#about" class="text-2xl text-white font-medium mobile-link">About</a>
+            <a href="#contact" class="mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-accent-start to-accent-end text-white text-lg font-medium mobile-link">Let's Talk</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 -left-32 w-96 h-96 bg-accent-start/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-end/10 rounded-full blur-[120px]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-accent-start/5 to-accent-end/5 rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="reveal">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-700 border border-dark-600 text-sm text-gray-300 mb-6">
+                            <span class="live-dot"></span>
+                            <span>Available for new projects</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight">
+                            Building <span class="gradient-text">Fast, Beautiful</span><br>
+                            WordPress Websites<br>
+                            That <span class="gradient-text">Convert.</span>
+                        </h1>
+                    </div>
+
+                    <p class="reveal reveal-delay-1 text-lg sm:text-xl text-gray-400 leading-relaxed max-w-xl">
+                        5+ years designing, developing, and optimizing responsive WordPress websites — from Figma mockup to production launch — for businesses across <strong class="text-white">Nigeria</strong>, the <strong class="text-white">UK</strong>, and <strong class="text-white">Europe</strong>. Specialized in Elementor, Bricks Builder, Divi, WooCommerce, Core Web Vitals, and React.js front-ends.
+                    </p>
+
+                    <div class="reveal reveal-delay-2 flex flex-wrap gap-4">
+                        <a href="#portfolio" class="px-8 py-4 rounded-full bg-gradient-to-r from-accent-start to-accent-end text-white font-semibold hover:shadow-xl hover:shadow-accent-start/30 transition-all hover:scale-105 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            View My Work
+                        </a>
+                        <a href="#" onclick="alert('Please add your CV link here')" class="px-8 py-4 rounded-full bg-dark-700 border border-dark-600 text-white font-semibold hover:border-accent-start/50 hover:bg-dark-600 transition-all flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            Download CV
+                        </a>
+                        <a href="https://wa.me/2348137337937" target="_blank" class="px-8 py-4 rounded-full bg-dark-700 border border-dark-600 text-white font-semibold hover:border-green-500/50 hover:bg-dark-600 transition-all flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp Me
+                        </a>
+                    </div>
+
+                    <div class="reveal reveal-delay-3 flex items-center gap-8 pt-4">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">5+</div>
+                            <div class="text-sm text-gray-500">Years Experience</div>
+                        </div>
+                        <div class="w-px h-12 bg-dark-600"></div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">12+</div>
+                            <div class="text-sm text-gray-500">Live Projects</div>
+                        </div>
+                        <div class="w-px h-12 bg-dark-600"></div>
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">3</div>
+                            <div class="text-sm text-gray-500">Continents</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-2 relative">
+                    <div class="gradient-border p-1 glow-accent">
+                        <div class="bg-dark-800 rounded-[14px] p-6 sm:p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+                                    <span class="live-dot"></span>
+                                    <span class="text-xs text-green-400 font-mono">LIVE</span>
+                                </div>
+                            </div>
+
+                            <div class="font-mono text-sm space-y-4">
+                                <div class="status-line flex items-center gap-3">
+                                    <span class="text-accent-start">→</span>
+                                    <span class="text-gray-300">Figma Design Received</span>
+                                    <span class="ml-auto text-green-400">✓ DONE</span>
+                                </div>
+                                <div class="status-line flex items-center gap-3">
+                                    <span class="text-accent-start">→</span>
+                                    <span class="text-gray-300">Elementor/Bricks Build</span>
+                                    <span class="ml-auto text-yellow-400">● IN PROGRESS</span>
+                                </div>
+                                <div class="status-line flex items-center gap-3">
+                                    <span class="text-accent-start">→</span>
+                                    <span class="text-gray-300">Responsive QA</span>
+                                    <span class="ml-auto text-gray-500">○ PENDING</span>
+                                </div>
+                                <div class="status-line flex items-center gap-3">
+                                    <span class="text-accent-start">→</span>
+                                    <span class="text-gray-300">Core Web Vitals Optimized</span>
+                                    <span class="ml-auto text-gray-500">○ PENDING</span>
+                                </div>
+                                <div class="status-line flex items-center gap-3">
+                                    <span class="text-accent-start">→</span>
+                                    <span class="text-gray-300">Site Deployed</span>
+                                    <span class="ml-auto text-gray-500">○ PENDING</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-6 border-t border-dark-600">
+                                <div class="flex items-center justify-between text-xs text-gray-500 font-mono">
+                                    <span>Website Build Pipeline</span>
+                                    <span class="flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-accent-start animate-pulse"></span>
+                                        Processing...
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-accent-start/20 to-accent-end/20 rounded-2xl blur-xl animate-float"></div>
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-accent-end/20 to-accent-start/20 rounded-full blur-xl animate-float" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By Marquee -->
+    <section class="py-16 border-y border-dark-700/50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+            <p class="text-center text-sm text-gray-500 uppercase tracking-widest font-medium">Trusted By / Worked With</p>
+        </div>
+        <div class="relative">
+            <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-dark-900 to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-dark-900 to-transparent z-10"></div>
+            <div class="marquee-track">
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Cluebox Nigeria</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">DSTRCT Group</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Twitwi Ltd</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">IPI Solutions</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Craftechnologies</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Bradama</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Rampart</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">CISSI Group</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Parametric GC</span>
+                    <span class="text-accent-start">•</span>
+                </div>
+                <div class="flex items-center gap-16 px-8">
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Cluebox Nigeria</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">DSTRCT Group</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Twitwi Ltd</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">IPI Solutions</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Craftechnologies</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Bradama</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Rampart</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">CISSI Group</span>
+                    <span class="text-accent-start">•</span>
+                    <span class="text-xl font-semibold text-gray-400 whitespace-nowrap hover:text-white transition-colors cursor-default">Parametric GC</span>
+                    <span class="text-accent-start">•</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Row -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <p class="text-sm text-gray-500 uppercase tracking-widest font-medium mb-2">Expertise In</p>
+            </div>
+            <div class="reveal flex flex-wrap justify-center gap-6 lg:gap-10">
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="M11 11h2v6h-2zm0-4h2v2h-2z"/></svg>
+                    <span class="font-medium text-gray-300">WordPress</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span class="font-medium text-gray-300">Elementor</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span class="font-medium text-gray-300">Bricks Builder</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 19h20L12 2zm0 3.5L18.5 17H5.5L12 5.5z"/></svg>
+                    <span class="font-medium text-gray-300">Divi</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span class="font-medium text-gray-300">WooCommerce</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    <span class="font-medium text-gray-300">React.js</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span class="font-medium text-gray-300">Next.js</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <span class="font-medium text-gray-300">Cloudflare</span>
+                </div>
+                <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all hover:scale-105">
+                    <svg class="w-6 h-6 text-accent-start" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h4v2H4zm0 5h4v2H4zm0 5h4v2H4zm6-10h10v2H10zm0 5h10v2H10zm0 5h10v2H10z"/></svg>
+                    <span class="font-medium text-gray-300">REST APIs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-800/30 to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 reveal">
+                <p class="text-sm text-accent-start uppercase tracking-widest font-medium mb-4">What I Do</p>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Solutions I Build</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal reveal-delay-1 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Custom WordPress Website Design</h3>
+                    <p class="text-gray-400 leading-relaxed">Figma-to-WordPress builds using Elementor, Bricks, and Divi, pixel-perfect and fully responsive across all devices.</p>
+                </div>
+
+                <div class="reveal reveal-delay-2 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">WooCommerce Store Builds</h3>
+                    <p class="text-gray-400 leading-relaxed">Product setup, shipping rules, payment gateways, order flow — everything you need to start selling online.</p>
+                </div>
+
+                <div class="reveal reveal-delay-3 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Site Speed & Core Web Vitals</h3>
+                    <p class="text-gray-400 leading-relaxed">Performance audits, caching, image optimization, and SEO fundamentals to rank higher and load faster.</p>
+                </div>
+
+                <div class="reveal reveal-delay-1 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Hosting, Security & Maintenance</h3>
+                    <p class="text-gray-400 leading-relaxed">VPS setup, DNS/MX configuration, SSL/TLS, Cloudflare CDN, and ongoing site care packages.</p>
+                </div>
+
+                <div class="reveal reveal-delay-2 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">API & Third-Party Integrations</h3>
+                    <p class="text-gray-400 leading-relaxed">CRMs, payment gateways, analytics, chat/knowledge-base tools — seamlessly connected to your site.</p>
+                </div>
+
+                <div class="reveal reveal-delay-3 gradient-border p-8 card-lift">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-start/20 to-accent-end/20 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-accent-start" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Front-End Development</h3>
+                    <p class="text-gray-400 leading-relaxed">React.js and JavaScript features layered on top of WordPress or built as standalone applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-sm text-accent-start uppercase tracking-widest font-medium mb-4">Featured Work</p>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Selected Projects</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <a href="https://mytwitwi.com" target="_blank" class="reveal portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="mytwitwi.png" alt="mytwitwi" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Security</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">AI Automation</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">React</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Payment Gateway</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">mytwitwi.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Marketplace ecosystem with security & AI-automation features.</p>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://dstrctgroup.com" target="_blank" class="reveal reveal-delay-1 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="dstrsct.png" alt="dstrctgroup" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WordPress</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Custom Theme</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Responsive</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">API Integration</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">dstrctgroup.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Enterprise WordPress web presence for a Netherlands-based creative agency.</p>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://wearecluebox.com" target="_blank" class="reveal reveal-delay-2 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="cluebox.png" alt="wearecluebox" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WordPress</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">React.js</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Hosting</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">IT Support</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">wearecluebox.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">High-speed React/WordPress theme platform.</p>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="https://cissigroup.com" target="_blank" class="reveal portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="cissi.png" alt="cissigroup" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Elementor</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">SEO</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Corporate</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">cissigroup.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Multi-disciplinary development & finance corporate site.</p>
+                    </div>
+                </a>
+
+                <!-- Project 5 -->
+                <a href="https://bradama.com" target="_blank" class="reveal reveal-delay-1 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="bradama.png" alt="bradama" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WordPress</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Corporate</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Slider Revolution</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">bradama.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Engineering, fabrication & industrial services corporate site.</p>
+                    </div>
+                </a>
+
+                <!-- Project 6 -->
+                <a href="https://rampart.ng" target="_blank" class="reveal reveal-delay-2 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="ramparts.png" alt="rampart" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Elementor</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Corporate</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Construction</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">rampart.ng</h3>
+                        <p class="text-sm text-gray-400 mt-1">Civil engineering & construction company website.</p>
+                    </div>
+                </a>
+
+                <!-- Project 7 -->
+                <a href="https://parametric.wearecluebox.com" target="_blank" class="reveal portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="parametric.png" alt="parametric" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WordPress</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Consulting</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Corporate</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">parametric.wearecluebox.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Investigations & strategic advisory firm site.</p>
+                    </div>
+                </a>
+
+                <!-- Project 8 -->
+                <a href="https://turtleandbloom.com" target="_blank" class="reveal reveal-delay-1 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="turtleandbloom.png" alt="turtleandbloom" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WooCommerce</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">E-commerce</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Payment Integration</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">turtleandbloom.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Global WooCommerce store.</p>
+                    </div>
+                </a>
+
+                <!-- Project 9 -->
+                <a href="https://thegrantonhotel.com" target="_blank" class="reveal reveal-delay-2 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="thegranton%20hoel.png" alt="thegrantonhotel" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Booking System</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Hospitality</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">WordPress</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">thegrantonhotel.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Full-stack WordPress booking website.</p>
+                    </div>
+                </a>
+
+                <!-- Project 10 -->
+                <a href="https://kiddualove.com" target="_blank" class="reveal portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="kidduas.png" alt="kiddualove" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">React</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Brand Site</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Education</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">kiddualove.com</h3>
+                        <p class="text-sm text-gray-400 mt-1">Islamic children's education brand site (React front-end build).</p>
+                    </div>
+                </a>
+
+                <!-- Project 11 -->
+                <a href="https://nusafirir.vercel.app" target="_blank" class="reveal reveal-delay-1 portfolio-card group relative rounded-2xl overflow-hidden bg-dark-800 border border-dark-700 hover:border-accent-start/30 transition-all card-lift md:col-span-2 lg:col-span-1">
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                        <img src="nusafiri.png" alt="nusafiri" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105 block" loading="lazy">
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="portfolio-tags flex flex-wrap gap-2 mb-3">
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">React</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Travel</span>
+                            <span class="tag-pill px-3 py-1 rounded-full text-xs">Concierge</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="live-dot"></span>
+                            <span class="text-xs text-green-400 font-medium">LIVE</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-accent-start transition-colors">nusafirir.vercel.app</h3>
+                        <p class="text-sm text-gray-400 mt-1">Luxury travel & concierge agency website (React front-end build).</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Case Study -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-800/50 via-transparent to-dark-800/50 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="reveal gradient-border p-1">
+                <div class="bg-dark-800 rounded-[15px] p-8 sm:p-12 lg:p-16">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="live-dot"></span>
+                        <span class="text-xs text-green-400 font-medium uppercase tracking-wider">Featured Case Study</span>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">DSTRCT Group</h2>
+                            <p class="text-accent-start font-medium mb-6">Enterprise WordPress Web Presence — Netherlands</p>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Business Challenge</h4>
+                                    <p class="text-gray-400 leading-relaxed">International client needed a fast, on-brand WordPress site launched from a Figma handoff with no existing dev infrastructure. Tight deadline and high design fidelity requirements.</p>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Developed Solution</h4>
+                                    <p class="text-gray-400 leading-relaxed">Custom WordPress theme build, CRM + REST API integration, WooCommerce setup, full hosting/DNS/SSL configuration. Delivered pixel-perfect Figma-to-WordPress translation.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center p-6 rounded-2xl bg-dark-700/50 border border-dark-600">
+                                <div class="text-4xl sm:text-5xl font-bold metric-number mb-2">40%</div>
+                                <div class="text-sm text-gray-400">Page Load Time Cut</div>
+                            </div>
+                            <div class="text-center p-6 rounded-2xl bg-dark-700/50 border border-dark-600">
+                                <div class="text-4xl sm:text-5xl font-bold metric-number mb-2">100%</div>
+                                <div class="text-sm text-gray-400">Mobile Responsiveness</div>
+                            </div>
+                            <div class="text-center p-6 rounded-2xl bg-dark-700/50 border border-dark-600">
+                                <div class="text-4xl sm:text-5xl font-bold metric-number mb-2">3</div>
+                                <div class="text-sm text-gray-400">Weeks to Launch</div>
+                            </div>
+                            <div class="text-center p-6 rounded-2xl bg-dark-700/50 border border-dark-600">
+                                <div class="text-4xl sm:text-5xl font-bold metric-number mb-2">A+</div>
+                                <div class="text-sm text-gray-400">GTmetrix Grade</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How I Work / Process -->
+    <section id="process" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-sm text-accent-start uppercase tracking-widest font-medium mb-4">My Workflow</p>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">How I Work</h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-8">
+                <!-- Step 1 -->
+                <div class="reveal relative pl-16 sm:pl-20">
+                    <div class="process-line hidden sm:block"></div>
+                    <div class="absolute left-0 top-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-accent-start/20 to-accent-end/20 border border-accent-start/30 flex items-center justify-center">
+                        <span class="text-xl font-bold gradient-text">01</span>
+                    </div>
+                    <div class="gradient-border p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Discovery & Design Review</h3>
+                        <p class="text-gray-400 leading-relaxed">Review Figma files, brand requirements, and project scope. Align on goals, target audience, and technical requirements before writing a single line of code.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="reveal reveal-delay-1 relative pl-16 sm:pl-20">
+                    <div class="absolute left-0 top-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-accent-start/20 to-accent-end/20 border border-accent-start/30 flex items-center justify-center">
+                        <span class="text-xl font-bold gradient-text">02</span>
+                    </div>
+                    <div class="gradient-border p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Build & Customize</h3>
+                        <p class="text-gray-400 leading-relaxed">Elementor/Bricks/Divi build or custom theme development. Pixel-perfect translation from design to functional website with clean, maintainable code.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="reveal reveal-delay-2 relative pl-16 sm:pl-20">
+                    <div class="absolute left-0 top-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-accent-start/20 to-accent-end/20 border border-accent-start/30 flex items-center justify-center">
+                        <span class="text-xl font-bold gradient-text">03</span>
+                    </div>
+                    <div class="gradient-border p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Responsive QA</h3>
+                        <p class="text-gray-400 leading-relaxed">Cross-device and cross-browser testing. Ensuring flawless experience on mobile, tablet, and desktop — tested down to 375px width.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="reveal reveal-delay-3 relative pl-16 sm:pl-20">
+                    <div class="absolute left-0 top-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-accent-start/20 to-accent-end/20 border border-accent-start/30 flex items-center justify-center">
+                        <span class="text-xl font-bold gradient-text">04</span>
+                    </div>
+                    <div class="gradient-border p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Performance & SEO Pass</h3>
+                        <p class="text-gray-400 leading-relaxed">Core Web Vitals optimization, speed tuning, image compression, caching setup, and on-page SEO fundamentals for maximum visibility.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="reveal reveal-delay-4 relative pl-16 sm:pl-20">
+                    <div class="absolute left-0 top-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-accent-start/20 to-accent-end/20 border border-accent-start/30 flex items-center justify-center">
+                        <span class="text-xl font-bold gradient-text">05</span>
+                    </div>
+                    <div class="gradient-border p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Launch & Support</h3>
+                        <p class="text-gray-400 leading-relaxed">Hosting setup, DNS configuration, SSL/TLS deployment, and post-launch maintenance. Ongoing support to keep your site secure and up-to-date.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-800/30 to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 reveal">
+                <p class="text-sm text-accent-start uppercase tracking-widest font-medium mb-4">The Engineer</p>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Meet the Developer<br>Behind the Solutions</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-12 items-start">
+                <div class="lg:col-span-2 reveal">
+                    <div class="relative">
+                        <div class="aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden gradient-border p-1">
+                            <div class="w-full h-full rounded-[22px] bg-gradient-to-br from-dark-700 to-dark-600 overflow-hidden">
+                                <img src="profile.jpg" alt="Isah Aruna" class="w-full h-full object-cover block" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-accent-start/20 to-accent-end/20 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-to-br from-accent-end/20 to-accent-start/20 rounded-full blur-2xl"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 space-y-6 reveal reveal-delay-1">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Hi, I'm <strong class="text-white">Isah Aruna</strong>. I'm a creative and technically skilled WordPress Website Designer with 5+ years of hands-on experience designing, building, and maintaining modern, responsive, SEO-optimized WordPress websites for businesses across Nigeria, the UK, and Europe.
+                    </p>
+
+                    <p class="text-gray-400 leading-relaxed">
+                        My strong focus on site speed, Core Web Vitals, and cross-device responsiveness is backed by front-end expertise (React.js, JavaScript) and site security knowledge (Google Cybersecurity, Ethical Hacking Essentials certifications). I don't just build websites — I build digital assets that perform.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 pt-4">
+                        <span class="flex items-center gap-2 text-green-400 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            WordPress Expert
+                        </span>
+                        <span class="flex items-center gap-2 text-green-400 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            WooCommerce Builds
+                        </span>
+                        <span class="flex items-center gap-2 text-green-400 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Performance Optimization
+                        </span>
+                        <span class="flex items-center gap-2 text-green-400 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            React.js Front-Ends
+                        </span>
+                        <span class="flex items-center gap-2 text-green-400 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Security Hardening
+                        </span>
+                    </div>
+
+                    <div class="pt-6">
+                        <p class="text-sm text-gray-500 uppercase tracking-wider mb-4">Certifications</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="cert-badge px-4 py-2 rounded-lg text-sm text-gray-300">Google Cloud Cybersecurity</span>
+                            <span class="cert-badge px-4 py-2 rounded-lg text-sm text-gray-300">Google Cybersecurity Professional</span>
+                            <span class="cert-badge px-4 py-2 rounded-lg text-sm text-gray-300">IBM DevOps Engineering</span>
+                            <span class="cert-badge px-4 py-2 rounded-lg text-sm text-gray-300">Ethical Hacking Essentials</span>
+                            <span class="cert-badge px-4 py-2 rounded-lg text-sm text-gray-300">Agentic AI & Prompt Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 cta-glow pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800/50 to-dark-900 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+            <div class="reveal">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    Let's Build Something<br><span class="gradient-text">Amazing Together.</span>
+                </h2>
+                <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Ready to transform your online presence? I'm currently accepting new projects. Let's discuss how I can help you build a fast, beautiful, high-converting website.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/2348137337937" target="_blank" class="px-8 py-4 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold hover:shadow-xl hover:shadow-green-500/30 transition-all hover:scale-105 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp Me
+                    </a>
+                    <a href="mailto:arunaisah.dev@gmail.com" class="px-8 py-4 rounded-full bg-dark-700 border border-dark-600 text-white font-semibold hover:border-accent-start/50 hover:bg-dark-600 transition-all flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        arunaisah.dev@gmail.com
+                    </a>
+                </div>
+
+                <div class="mt-8 flex items-center justify-center gap-2 text-sm text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Abuja, Nigeria — Open to remote & relocation
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-dark-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-start to-accent-end flex items-center justify-center text-white font-bold text-lg">
+                            IA
+                        </div>
+                        <span class="font-bold text-lg text-white">Isah Aruna</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        WordPress Website Designer & Front-End Developer — based in Abuja, Nigeria, serving clients globally.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#services" class="block text-gray-400 hover:text-white transition-colors text-sm">Services</a>
+                        <a href="#portfolio" class="block text-gray-400 hover:text-white transition-colors text-sm">Portfolio</a>
+                        <a href="#process" class="block text-gray-400 hover:text-white transition-colors text-sm">Process</a>
+                        <a href="#about" class="block text-gray-400 hover:text-white transition-colors text-sm">About</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Connect</h4>
+                    <div class="flex gap-4">
+                        <a href="https://linkedin.com/in/arunaisah" target="_blank" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent-start/50 transition-all hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://github.com/Hm2025" target="_blank" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent-start/50 transition-all hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="https://wa.me/2348137337937" target="_blank" class="w-10 h-10 rounded-xl bg-dark-800 border border-dark-700 flex items-center justify-center text-gray-400 hover:text-green-400 hover:border-green-500/50 transition-all hover:scale-110">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">+234 813 733 7937</p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-dark-700/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">© 2026 Isah Aruna. All rights reserved.</p>
+                <p class="text-sm text-gray-600">Built with passion in Abuja, Nigeria</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('bg-dark-900/90', 'nav-blur', 'border-b', 'border-dark-700/50');
+            } else {
+                navbar.classList.remove('bg-dark-900/90', 'nav-blur', 'border-b', 'border-dark-700/50');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('hamburger-active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('hamburger-active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Intersection Observer for reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offset = 80;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-accent-start');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('text-accent-start');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
